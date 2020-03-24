@@ -3,7 +3,7 @@ import utils
 import struct
 
 
-def parse_trustedrecord_binary(file_name, bin_data):
+def parse_trustrecord_data(file_name, bin_data):
     bin_data = bytes(reversed(bin_data))
     res = {'file_name': file_name,
            'created_time': '',
@@ -44,5 +44,5 @@ if __name__ == '__main__':
 
     for i in range(0, winreg.QueryInfoKey(key)[1]):
         value, data, type = winreg.EnumValue(key, i)
-        result = parse_trustedrecord_binary(value, data)
+        result = parse_trustrecord_data(value, data)
         print(format_result(result))
