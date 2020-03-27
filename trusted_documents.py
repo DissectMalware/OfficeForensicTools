@@ -43,6 +43,9 @@ if __name__ == '__main__':
     key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_name, 0, winreg.KEY_READ)
 
     for i in range(0, winreg.QueryInfoKey(key)[1]):
-        value, data, type = winreg.EnumValue(key, i)
-        result = parse_trustrecord_data(value, data)
-        print(format_result(result))
+        try:
+            value, data, type = winreg.EnumValue(key, i)
+            result = parse_trustrecord_data(value, data)
+            print(format_result(result))
+        except Exception as exp:
+            print(exp.message)

@@ -44,14 +44,8 @@ def estimate_access_time(access_time):
 
 def get_time_zone(timezone):
     HUNDREDS_OF_NANOSECONDS = 10000000
-    ft_zone_dec = struct.unpack('>Q', timezone)[0]
-    if timezone[0]== 255:
-        time_limit = bytes.fromhex('FFFFFFFFFFFFFFFF')
-        ft_limit_dec = struct.unpack('>Q', time_limit)[0]
-        res = (ft_limit_dec - ft_zone_dec + 1)//HUNDREDS_OF_NANOSECONDS
-        res = -res
-    else:
-        res = ft_zone_dec // HUNDREDS_OF_NANOSECONDS
+    ft_zone_dec = struct.unpack('>q', timezone)[0]
+    res = ft_zone_dec // HUNDREDS_OF_NANOSECONDS
     return timedelta(seconds=res)
 
 
