@@ -48,4 +48,4 @@ if __name__ == '__main__':
             result = parse_trustrecord_data(value, data)
             print(format_result(result))
         except Exception as exp:
-            print(exp.message)
+            print('Error: {}'.format(exp.message))
