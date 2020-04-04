@@ -7,7 +7,10 @@ def convert_filetime_to_systemtime(filetime):
     EPOCH_AS_FILETIME = 116444736000000000;
     HUNDREDS_OF_NANOSECONDS = 10000000
     ft_dec = struct.unpack('>Q', filetime)[0]
-    dt = datetime.utcfromtimestamp((ft_dec - EPOCH_AS_FILETIME) / HUNDREDS_OF_NANOSECONDS)
+    if ft_dec >= EPOCH_AS_FILETIME:
+        dt = datetime.utcfromtimestamp((ft_dec - EPOCH_AS_FILETIME) / HUNDREDS_OF_NANOSECONDS)
+    else:
+        dt = None
     return dt
 
 
